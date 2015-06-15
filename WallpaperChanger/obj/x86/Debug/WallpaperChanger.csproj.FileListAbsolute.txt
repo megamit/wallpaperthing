@@ -1,6 +1,0 @@
-F:\Projects\WallpaperThing\WallpaperChanger\bin\Debug\WallpaperChanger.exe.config
-F:\Projects\WallpaperThing\WallpaperChanger\bin\Debug\WallpaperChanger.exe
-F:\Projects\WallpaperThing\WallpaperChanger\bin\Debug\WallpaperChanger.pdb
-F:\Projects\WallpaperThing\WallpaperChanger\obj\x86\Debug\WallpaperChanger.csprojResolveAssemblyReference.cache
-F:\Projects\WallpaperThing\WallpaperChanger\obj\x86\Debug\WallpaperChanger.exe
-F:\Projects\WallpaperThing\WallpaperChanger\obj\x86\Debug\WallpaperChanger.pdb
