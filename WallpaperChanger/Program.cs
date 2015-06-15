@@ -20,6 +20,7 @@
 // Optional flags:
 //   -h, -help   - Display the usage help
 //   -r, -remove - Remove the current wallpaper
+//   -d, -display - Display the current state all displays
 //
 // Alternatively a config file can be placed in the same directory as the WallpaperChanger executable.
 // The file should be named 'config' without any file extension.  Each line in the file should have
@@ -38,6 +39,8 @@ using System.Data;
 using System.Net;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
+using System.Collections.Generic;
+using System.Text;
 
 namespace WallpaperChanger
 {
@@ -51,6 +54,7 @@ namespace WallpaperChanger
         // this is the system DLL for doing wallpaper stuff
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern int SystemParametersInfo(int uAction, int uParam, string lpvParam, int fuWinIni);
+
 
         public enum Style : int
         {
@@ -69,6 +73,59 @@ namespace WallpaperChanger
                 // convert and save the image as a bmp file (bmp format is required for the wallpaper)
                 img.Save(storagePath, System.Drawing.Imaging.ImageFormat.Bmp);
             
+                // update the regsitry
+                RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
+                if (style == Style.Tiled)
+                {
+                    key.SetValue(@"WallpaperStyle", 0.ToString());
+                    key.SetValue(@"TileWallpaper", 1.ToString());
+                }
+                if (style == Style.Centered)
+                {
+                    key.SetValue(@"WallpaperStyle", 0.ToString());
+                    key.SetValue(@"TileWallpaper", 0.ToString());
+                }
+                if (style == Style.Stretched)
+                {
+                    key.SetValue(@"WallpaperStyle", 2.ToString());
+                    key.SetValue(@"TileWallpaper", 0.ToString());
+                }
+                if (style == Style.Fit)
+                {
+                    key.SetValue(@"WallpaperStyle", 6.ToString());
+                    key.SetValue(@"TileWallpaper", 0.ToString());
+                }
+                if (style == Style.Fill)
+                {
+                    key.SetValue(@"WallpaperStyle", 10.ToString());
+                    key.SetValue(@"TileWallpaper", 0.ToString());
+                }
+
+                // set the wallpaper using the external method
+                SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, storagePath, SPIF_UPDATEINIFILE | SPIF_SENDWININICHANGE);
+            }
+            catch (OutOfMemoryException ex)
+            {  // thrown when the file does not have a valid image format or the decoder does not support the pixel format of the file
+                Console.WriteLine("\nInvalid file format or the file format is not supported");
+                return 1;
+            }
+            catch (Exception ex)
+            { // catch everything else just in case
+                Console.WriteLine("<unexpected error>\n\n" + ex.ToString());
+                return 1;
+            }
+
+            return 0;
+        }
+
+        public static int SetWithActiveDesktop(String file, Style style, String storagePath)
+        {
+            try
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(file);
+                // convert and save the image as a bmp file (bmp format is required for the wallpaper)
+                img.Save(storagePath, System.Drawing.Imaging.ImageFormat.Bmp);
+
                 // update the regsitry
                 RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop", true);
                 if (style == Style.Tiled)
@@ -135,7 +192,7 @@ namespace WallpaperChanger
         {
             String help = "\nCopyright (c) 2014 Phillip Hansen  http://sg20.com (version 1.4)\n\nSyntax is: <file|directory> <style> <location>\n\n  <file> is the complete path to the file\n  <directory> is the complete path to a directory containing image files\n    a random image from the directory will be set as the background\n  <style> is an integer (if no style is specified it defaults to Stretched):\n    0 for Tiled\n    1 for Centered\n    2 for Stretched\n    3 for Fit (Windows 7 or later)\n    4 for Fill (Windows 7 or later)\n  <location> is the complete path to a directory for storing the generated file\n    defaults to the temp folder which should be fine in most cases";
             help += "\n\nIf the style argument is not specified it will default to Stretched.";
-            help += "\n\nOptional flags:\n  -h, -help   - Display the usage help\n  -r, -remove - Remove the current wallpaper";
+            help += "\n\nOptional flags:\n  -h, -help   - Display the usage help\n  -r, -remove - Remove the current wallpaper\n  -d, -display - Display the current state all displays";
             help += "\n\nAlternatively a config file can be placed in the same directory as the WallpaperChanger executable. The file should be named 'config' without any file extension.  Each line in the file should have the full path to an image and can optionally include the style code to use.  If the style is not specified it will default to Stretched.";
 
             String path = "";
@@ -170,6 +227,40 @@ namespace WallpaperChanger
                 else if (args[0] == "-r" || args[0] == "-remove")
                 {
                     return Remove();
+                }
+                //display dump
+                else if (args[0] == "-d" || args[0]=="-display")
+                {
+                    int i = 0;
+                    EnumDisplayMonitorsWrapper dwrapper = new EnumDisplayMonitorsWrapper();
+                    foreach(EnumDisplayMonitorsWrapper.DisplayInfo info in dwrapper.GetDisplays())
+                    {
+                        Console.WriteLine("Monitor "+i++.ToString());
+                        Console.WriteLine("  Primary: " + (info.Availability =="1"?"Yes":"No"));
+                        Console.WriteLine("  Screen Height: " + info.ScreenHeight);
+                        Console.WriteLine("  Screen Width: " + info.ScreenWidth);
+                        Console.WriteLine("  Monitor Area:" +
+                            " t:"+info.MonitorArea.top +
+                            " b:" + info.MonitorArea.bottom +
+                            " l:" + info.MonitorArea.left +
+                            " r:" + info.MonitorArea.right
+                        );
+                        Console.WriteLine("  Work Area: " +
+                            " t:" + info.WorkArea.top +
+                            " b:" + info.WorkArea.bottom +
+                            " l:" + info.WorkArea.left +
+                            " r:" + info.WorkArea.right
+                        );
+                    }
+                    return 1;
+                }
+                else if (args[0] == "test")
+                {
+                    int filenameSize = 0;
+                    StringBuilder filename = new StringBuilder();
+                    IActiveDesktop iADesktop = IActiveDesktopWrapper.GetActiveDesktop();
+                    iADesktop.GetWallpaper(filename, filenameSize, 0x00000002);
+                    Console.WriteLine("filename: "+filename.ToString() +", filenameSize: "+filenameSize.ToString());
                 }
 
                 // retrieve file/directory if we are not using config file
