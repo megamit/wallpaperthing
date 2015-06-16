@@ -126,7 +126,6 @@ namespace WallpaperChanger
             {
                 IntPtr result = IntPtr.Zero;
                 SendMessageTimeout(FindWindow("Progman", IntPtr.Zero), 0x52c, IntPtr.Zero, IntPtr.Zero, 0, 500, out result);
-                Console.WriteLine(result.ToString());
                 System.Drawing.Image img = System.Drawing.Image.FromFile(file);
                 // convert and save the image as a bmp file (bmp format is required for the wallpaper)
                 img.Save(storagePath, System.Drawing.Imaging.ImageFormat.Bmp);
@@ -169,7 +168,8 @@ namespace WallpaperChanger
 
                 iad.SetWallpaper(storagePath, 0);
                 WALLPAPEROPT wopt = new WALLPAPEROPT();
-                Console.WriteLine("Style " + style.ToString());
+                wopt.dwSize = WALLPAPEROPT.SizeOf;
+                iad.GetWallpaperOptions(ref wopt, 0);
                 if (style == Style.Tiled) wopt.dwStyle = WallPaperStyle.WPSTYLE_TILE;
                 else if (style == Style.Centered) wopt.dwStyle = WallPaperStyle.WPSTYLE_CENTER;
                 else if (style == Style.Stretched) wopt.dwStyle = WallPaperStyle.WPSTYLE_STRETCH;
@@ -177,11 +177,12 @@ namespace WallpaperChanger
                 else if (style == Style.Fill) wopt.dwStyle = WallPaperStyle.WPSTYLE_CROPTOFIT;
                 else if (style == Style.Span) wopt.dwStyle = WallPaperStyle.WPSTYLE_SPAN;
 
-                iad.SetWallpaperOptions(wopt,0);
+                iad.SetWallpaperOptions(ref wopt,0);
                 iad.ApplyChanges(AD_Apply.ALL | AD_Apply.FORCE | AD_Apply.BUFFERED_REFRESH);
+
                 WALLPAPEROPT newWopt = new WALLPAPEROPT();
-                iad.GetWallpaperOptions(newWopt, 0);
-                Console.WriteLine("Check Style:" + newWopt.dwStyle.ToString());
+                iad.GetWallpaperOptions(ref newWopt, 0);
+                Console.WriteLine("Wallpaper Options:\n" + newWopt.dwStyle.ToString());
             }
             catch (OutOfMemoryException ex)
             {  // thrown when the file does not have a valid image format or the decoder does not support the pixel format of the file

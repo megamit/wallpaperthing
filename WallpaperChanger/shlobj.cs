@@ -9,7 +9,8 @@ namespace Windows.Native
 
     public struct WALLPAPEROPT
     {
-        public static readonly int dwSize = Marshal.SizeOf(typeof(WALLPAPEROPT));
+        public static readonly int SizeOf = Marshal.SizeOf(typeof(WALLPAPEROPT));
+        public int dwSize;
         public WallPaperStyle dwStyle;
         public override string ToString()
         {
@@ -21,11 +22,11 @@ namespace Windows.Native
             Dictionary<string, object> values = new Dictionary<string, object>();
             Array.ForEach(fields, (field) =>
             {
-                sb.AppendLine("field- "+field.Name+": "+ field.GetValue(wopt));
+                sb.AppendLine("field- " + field.Name + ": " + field.GetValue(wopt));
             });
             Array.ForEach(properties, (property) =>
             {
-                if (property.CanRead) sb.AppendLine("prop- "+property.Name + ": " + property.GetValue(wopt, null));
+                if (property.CanRead) sb.AppendLine("prop- " + property.Name + ": " + property.GetValue(wopt, null));
             });
             return sb.ToString();
         }
