@@ -63,7 +63,8 @@ namespace WallpaperChanger
             Centered,
             Stretched,
             Fit,
-            Fill
+            Fill,
+            Span
         }
 
         public static int SetWithRegistry(String file, Style style, String storagePath)
@@ -161,34 +162,21 @@ namespace WallpaperChanger
 
                 // set the wallpaper using the external method
                 IActiveDesktop iad = shlobj.GetActiveDesktop();
-                WALLPAPEROPT oldWopt = new WALLPAPEROPT();
-                iad.GetWallpaperOptions(ref oldWopt, 0);
-                Console.WriteLine("Old Style:"+oldWopt.dwStyle.ToString());
-                Console.WriteLine(oldWopt.ToString());
+                //WALLPAPEROPT oldWopt = new WALLPAPEROPT();
+                //iad.GetWallpaperOptions(ref oldWopt, 0);
+                //Console.WriteLine("Old Style:"+oldWopt.dwStyle.ToString());
+                //Console.WriteLine(oldWopt.ToString());
 
                 iad.SetWallpaper(storagePath, 0);
                 WALLPAPEROPT wopt = new WALLPAPEROPT();
                 Console.WriteLine("Style " + style.ToString());
-                if (style == Style.Tiled)
-                {
-                    wopt.dwStyle = WallPaperStyle.WPSTYLE_TILE;
-                }
-                if (style == Style.Centered)
-                {
-                    wopt.dwStyle = WallPaperStyle.WPSTYLE_CENTER;
-                }
-                if (style == Style.Stretched)
-                {
-                    wopt.dwStyle = WallPaperStyle.WPSTYLE_STRETCH;
-                }
-                if (style == Style.Fit)
-                {
-                    wopt.dwStyle = WallPaperStyle.WPSTYLE_KEEPASPECT;
-                }
-                if (style == Style.Fill)
-                {
-                    wopt.dwStyle = WallPaperStyle.WPSTYLE_CROPTOFIT;
-                }
+                if (style == Style.Tiled) wopt.dwStyle = WallPaperStyle.WPSTYLE_TILE;
+                else if (style == Style.Centered) wopt.dwStyle = WallPaperStyle.WPSTYLE_CENTER;
+                else if (style == Style.Stretched) wopt.dwStyle = WallPaperStyle.WPSTYLE_STRETCH;
+                else if (style == Style.Fit) wopt.dwStyle = WallPaperStyle.WPSTYLE_KEEPASPECT;
+                else if (style == Style.Fill) wopt.dwStyle = WallPaperStyle.WPSTYLE_CROPTOFIT;
+                else if (style == Style.Span) wopt.dwStyle = WallPaperStyle.WPSTYLE_SPAN;
+
                 iad.SetWallpaperOptions(wopt,0);
                 iad.ApplyChanges(AD_Apply.ALL | AD_Apply.FORCE | AD_Apply.BUFFERED_REFRESH);
                 WALLPAPEROPT newWopt = new WALLPAPEROPT();
