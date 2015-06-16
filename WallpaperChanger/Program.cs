@@ -12,6 +12,7 @@
 //    2 for Stretched
 //    3 for Fit (Windows 7 or later)
 //    4 for Fill (Windows 7 or later)
+//    5 for Span (Windows 8 or later)
 //  <location> is the complete path to a directory for storing the generated file
 //    defaults to the temp folder which should be fine in most cases
 //
