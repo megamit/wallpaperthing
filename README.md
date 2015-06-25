@@ -26,4 +26,4 @@ Open the included visual studio solution. The only dependency is .NET 3.5
 
 ## Download
 
-[Latest Version](https://github.com/megamit/wallpaperthing/blob/master/GuiWaller/bin/Release/GuiWaller.exe)
+[Latest Version](https://github.com/megamit/wallpaperthing/raw/master/GuiWaller/bin/Release/GuiWaller.exe)
