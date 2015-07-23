@@ -7,6 +7,7 @@ namespace GuiWaller.Source
 {
     class Directory : Source
     {
+        private 
         public string getNewWallpaper(){
             return "";
         }

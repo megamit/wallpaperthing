@@ -8,5 +8,6 @@ namespace GuiWaller.Source
     interface Source 
     {
         string getNewWallpaper();
+        int runSettingsApplet();
     }
 }
