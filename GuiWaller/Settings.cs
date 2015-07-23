@@ -11,10 +11,10 @@ namespace GuiWaller
         private string settingsPath;
         private GuiWaller.EnumDisplayMonitorsWrapper.DisplayInfoCollection displayList;
         private Theme theme;
-        private Source[] sourceList;
+        public string apppath { get; private set; }
         public Settings()
         {
-            string apppath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Waller");
+            apppath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Waller");
 
             settingsPath = Path.Combine(apppath,"settings.ini");
 
@@ -43,6 +43,7 @@ namespace GuiWaller
         {
             Disabled,
             Directory,
+            Chan,
         }
         public enum CycleMode
         {
@@ -83,7 +84,12 @@ namespace GuiWaller
                         
                     }
                     break;
+                case Settings.Mode.Chan:
+                    theme.source = FileHelper.GetImageFrom4chan(false, 20, 5);
+
+                    break;
             }
+            Console.WriteLine("new theme set");
             return theme;
         }
 

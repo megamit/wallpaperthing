@@ -8,13 +8,28 @@ namespace GuiWaller
     class Theme
     {
         private Random rng = new Random();
+        private IEnumerator<string> enumerator;
         private int lastUpdatedDisplay = 0;
-        public Theme()
+        private bool sauce;
+        public IEnumerable<string> source
         {
-            source = nullSource();
+            set
+            {
+                if (enumerator != null)  enumerator.Dispose();
+                enumerator = value.GetEnumerator();
+                }
+            }
+        
+        private string[] take(int count)
+        {
+            string[] imgs = new string[count];
+            for (int i = 0; i < count; i++)
+            {
+                enumerator.MoveNext();
+                imgs[i] = enumerator.Current;
+            }
+            return imgs;
         }
-        public IEnumerable<string> source { get; set; }
-
         public IEnumerable<string> nullSource()
         {
             yield return null;
@@ -23,7 +38,7 @@ namespace GuiWaller
         {
             int count = (new EnumDisplayMonitorsWrapper()).GetDisplays().Count;
             if(count==0) return;
-            string[] imgs = source.Take(count).ToArray();
+            string[] imgs = take(Properties.Settings.Default.ImagesPerCycle);
             int[] disps = new int[Properties.Settings.Default.ImagesPerCycle];
             if ((Settings.DisplayCycleMode)Properties.Settings.Default.DisplayOrder == Settings.DisplayCycleMode.Consecutive)
                 for (int i = 0; i<disps.Length;i++){
