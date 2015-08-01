@@ -1,15 +1,32 @@
-﻿using System;
+﻿using GuiWaller.Gui.Source;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace GuiWaller.Source
 {
-    class Directory : Source
+    class DirectorySource : Source
     {
-        private 
+        private string path;
+        private bool useSubfolders;
+        private string order;
         public string getNewWallpaper(){
             return "";
+        }
+        public int runSettingsApplet()
+        {
+            DirectorySettings settings = new DirectorySettings(new System.EventHandler(onSettingsCloseHandler));
+            settings.ShowDialog();
+            return 0;
+        }
+        public void onSettingsCloseHandler(object sender, EventArgs ev)
+        {
+            GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions e = (GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions) ev;
+            path = e.path;
+            useSubfolders = e.useSubfolders;
+            order = e.order;
         }
         public static IEnumerable<string> ImageInDirectoryGenerator(String path, bool sub)
         {

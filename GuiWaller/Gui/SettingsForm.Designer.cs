@@ -31,6 +31,8 @@
             this.ModeLabel = new System.Windows.Forms.Label();
             this.ModeCombo = new System.Windows.Forms.ComboBox();
             this.ModeOptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.OptionsScalingLabel = new System.Windows.Forms.Label();
+            this.OptionsScalingCombobox = new System.Windows.Forms.ComboBox();
             this.OptionsDisplayOrderCombobox = new System.Windows.Forms.ComboBox();
             this.OptionsDisplayOrderLabel = new System.Windows.Forms.Label();
             this.OptionsImageCountEntry = new System.Windows.Forms.NumericUpDown();
@@ -43,9 +45,6 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.ModeOptions = new System.Windows.Forms.Button();
             this.ModeInfoLabel = new System.Windows.Forms.Label();
-            this.ModeCheckbox = new System.Windows.Forms.CheckBox();
-            this.OptionsScalingLabel = new System.Windows.Forms.Label();
-            this.OptionsScalingCombobox = new System.Windows.Forms.ComboBox();
             this.ModeOptionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsImageCountEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsCycleDelayEntry)).BeginInit();
@@ -82,18 +81,36 @@
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleDelayLabel);
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleCombobox);
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleLabel);
-            this.ModeOptionsGroupBox.Location = new System.Drawing.Point(16, 39);
+            this.ModeOptionsGroupBox.Location = new System.Drawing.Point(299, 10);
             this.ModeOptionsGroupBox.Name = "ModeOptionsGroupBox";
-            this.ModeOptionsGroupBox.Size = new System.Drawing.Size(346, 110);
+            this.ModeOptionsGroupBox.Size = new System.Drawing.Size(182, 229);
             this.ModeOptionsGroupBox.TabIndex = 2;
             this.ModeOptionsGroupBox.TabStop = false;
             this.ModeOptionsGroupBox.Text = "Options";
+            // 
+            // OptionsScalingLabel
+            // 
+            this.OptionsScalingLabel.AutoSize = true;
+            this.OptionsScalingLabel.Location = new System.Drawing.Point(36, 132);
+            this.OptionsScalingLabel.Name = "OptionsScalingLabel";
+            this.OptionsScalingLabel.Size = new System.Drawing.Size(42, 13);
+            this.OptionsScalingLabel.TabIndex = 7;
+            this.OptionsScalingLabel.Text = "Scaling";
+            // 
+            // OptionsScalingCombobox
+            // 
+            this.OptionsScalingCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.OptionsScalingCombobox.FormattingEnabled = true;
+            this.OptionsScalingCombobox.Location = new System.Drawing.Point(84, 132);
+            this.OptionsScalingCombobox.Name = "OptionsScalingCombobox";
+            this.OptionsScalingCombobox.Size = new System.Drawing.Size(83, 21);
+            this.OptionsScalingCombobox.TabIndex = 8;
             // 
             // OptionsDisplayOrderCombobox
             // 
             this.OptionsDisplayOrderCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OptionsDisplayOrderCombobox.FormattingEnabled = true;
-            this.OptionsDisplayOrderCombobox.Location = new System.Drawing.Point(246, 22);
+            this.OptionsDisplayOrderCombobox.Location = new System.Drawing.Point(84, 25);
             this.OptionsDisplayOrderCombobox.Name = "OptionsDisplayOrderCombobox";
             this.OptionsDisplayOrderCombobox.Size = new System.Drawing.Size(83, 21);
             this.OptionsDisplayOrderCombobox.TabIndex = 7;
@@ -101,7 +118,7 @@
             // OptionsDisplayOrderLabel
             // 
             this.OptionsDisplayOrderLabel.AutoSize = true;
-            this.OptionsDisplayOrderLabel.Location = new System.Drawing.Point(170, 25);
+            this.OptionsDisplayOrderLabel.Location = new System.Drawing.Point(8, 28);
             this.OptionsDisplayOrderLabel.Name = "OptionsDisplayOrderLabel";
             this.OptionsDisplayOrderLabel.Size = new System.Drawing.Size(70, 13);
             this.OptionsDisplayOrderLabel.TabIndex = 6;
@@ -109,7 +126,7 @@
             // 
             // OptionsImageCountEntry
             // 
-            this.OptionsImageCountEntry.Location = new System.Drawing.Point(246, 49);
+            this.OptionsImageCountEntry.Location = new System.Drawing.Point(84, 52);
             this.OptionsImageCountEntry.Minimum = new decimal(new int[] {
             1,
             0,
@@ -127,7 +144,7 @@
             // OptionsImageCountLabel
             // 
             this.OptionsImageCountLabel.AutoSize = true;
-            this.OptionsImageCountLabel.Location = new System.Drawing.Point(170, 52);
+            this.OptionsImageCountLabel.Location = new System.Drawing.Point(6, 54);
             this.OptionsImageCountLabel.Name = "OptionsImageCountLabel";
             this.OptionsImageCountLabel.Size = new System.Drawing.Size(72, 13);
             this.OptionsImageCountLabel.TabIndex = 4;
@@ -135,7 +152,7 @@
             // 
             // OptionsCycleDelayEntry
             // 
-            this.OptionsCycleDelayEntry.Location = new System.Drawing.Point(74, 50);
+            this.OptionsCycleDelayEntry.Location = new System.Drawing.Point(84, 106);
             this.OptionsCycleDelayEntry.Minimum = new decimal(new int[] {
             1,
             0,
@@ -153,7 +170,7 @@
             // OptionsCycleDelayLabel
             // 
             this.OptionsCycleDelayLabel.AutoSize = true;
-            this.OptionsCycleDelayLabel.Location = new System.Drawing.Point(6, 52);
+            this.OptionsCycleDelayLabel.Location = new System.Drawing.Point(44, 108);
             this.OptionsCycleDelayLabel.Name = "OptionsCycleDelayLabel";
             this.OptionsCycleDelayLabel.Size = new System.Drawing.Size(34, 13);
             this.OptionsCycleDelayLabel.TabIndex = 2;
@@ -163,7 +180,7 @@
             // 
             this.OptionsCycleCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.OptionsCycleCombobox.FormattingEnabled = true;
-            this.OptionsCycleCombobox.Location = new System.Drawing.Point(75, 23);
+            this.OptionsCycleCombobox.Location = new System.Drawing.Point(84, 76);
             this.OptionsCycleCombobox.Name = "OptionsCycleCombobox";
             this.OptionsCycleCombobox.Size = new System.Drawing.Size(83, 21);
             this.OptionsCycleCombobox.TabIndex = 1;
@@ -171,7 +188,7 @@
             // OptionsCycleLabel
             // 
             this.OptionsCycleLabel.AutoSize = true;
-            this.OptionsCycleLabel.Location = new System.Drawing.Point(6, 26);
+            this.OptionsCycleLabel.Location = new System.Drawing.Point(15, 79);
             this.OptionsCycleLabel.Name = "OptionsCycleLabel";
             this.OptionsCycleLabel.Size = new System.Drawing.Size(63, 13);
             this.OptionsCycleLabel.TabIndex = 0;
@@ -179,7 +196,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(320, 155);
+            this.CancelButton.Location = new System.Drawing.Point(406, 293);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -189,7 +206,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(239, 155);
+            this.OkButton.Location = new System.Drawing.Point(299, 293);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 4;
@@ -215,41 +232,11 @@
             this.ModeInfoLabel.Size = new System.Drawing.Size(0, 13);
             this.ModeInfoLabel.TabIndex = 6;
             // 
-            // ModeCheckbox
-            // 
-            this.ModeCheckbox.AutoSize = true;
-            this.ModeCheckbox.Location = new System.Drawing.Point(264, 14);
-            this.ModeCheckbox.Name = "ModeCheckbox";
-            this.ModeCheckbox.Size = new System.Drawing.Size(98, 17);
-            this.ModeCheckbox.TabIndex = 4;
-            this.ModeCheckbox.Text = "Sub Directories";
-            this.ModeCheckbox.UseVisualStyleBackColor = true;
-            this.ModeCheckbox.Visible = false;
-            // 
-            // OptionsScalingLabel
-            // 
-            this.OptionsScalingLabel.AutoSize = true;
-            this.OptionsScalingLabel.Location = new System.Drawing.Point(6, 79);
-            this.OptionsScalingLabel.Name = "OptionsScalingLabel";
-            this.OptionsScalingLabel.Size = new System.Drawing.Size(42, 13);
-            this.OptionsScalingLabel.TabIndex = 7;
-            this.OptionsScalingLabel.Text = "Scaling";
-            // 
-            // OptionsScalingCombobox
-            // 
-            this.OptionsScalingCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.OptionsScalingCombobox.FormattingEnabled = true;
-            this.OptionsScalingCombobox.Location = new System.Drawing.Point(75, 76);
-            this.OptionsScalingCombobox.Name = "OptionsScalingCombobox";
-            this.OptionsScalingCombobox.Size = new System.Drawing.Size(83, 21);
-            this.OptionsScalingCombobox.TabIndex = 8;
-            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 182);
-            this.Controls.Add(this.ModeCheckbox);
+            this.ClientSize = new System.Drawing.Size(497, 328);
             this.Controls.Add(this.ModeInfoLabel);
             this.Controls.Add(this.ModeOptions);
             this.Controls.Add(this.OkButton);
@@ -281,7 +268,6 @@
         private System.Windows.Forms.Label OptionsCycleDelayLabel;
         private System.Windows.Forms.ComboBox OptionsCycleCombobox;
         private System.Windows.Forms.Label ModeInfoLabel;
-        private System.Windows.Forms.CheckBox ModeCheckbox;
         private System.Windows.Forms.NumericUpDown OptionsImageCountEntry;
         private System.Windows.Forms.Label OptionsImageCountLabel;
         private System.Windows.Forms.ComboBox OptionsDisplayOrderCombobox;

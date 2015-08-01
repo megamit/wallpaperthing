@@ -11,9 +11,26 @@ namespace GuiWaller.Gui.Source
 {
     public partial class DirectorySettings : Form
     {
-        public DirectorySettings()
+        public class DirectorySettingsClosedOptions : EventArgs
+        {
+            public readonly string path;
+            public readonly string order;
+            public readonly bool useSubfolders;
+
+            public DirectorySettingsClosedOptions(string newPath, string newOrder, bool newUseSubfolders)
+            {
+                path = newPath;
+                order = newOrder;
+                useSubfolders = newUseSubfolders;
+            }
+
+        }
+
+        private EventHandler onOkHandler;
+        public DirectorySettings(EventHandler onOkHandle)
         {
             InitializeComponent();
+            onOkHandler = onOkHandle;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -24,6 +41,15 @@ namespace GuiWaller.Gui.Source
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void onOk(object sender, EventArgs e)
+        {
+            EventArgs args = new DirectorySettingsClosedOptions(
+                DirectoryPath.Text,
+                ""+DirectoryOrder.SelectedValue,
+                DirectorySubfolders.Checked);
+            onOkHandler(sender, args);
         }
     }
 }

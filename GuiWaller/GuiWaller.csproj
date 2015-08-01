@@ -66,7 +66,7 @@
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="shlobj.cs" />
-    <Compile Include="Source\Directory.cs" />
+    <Compile Include="Source\DirectorySource.cs" />
     <Compile Include="Source\Source.cs" />
     <Compile Include="Theme.cs" />
     <Compile Include="TrayDaemon.cs" />
