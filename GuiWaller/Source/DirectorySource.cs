@@ -12,6 +12,7 @@ namespace GuiWaller.Source
         private string path;
         private bool useSubfolders;
         private string order;
+
         public string getNewWallpaper(){
             return "";
         }

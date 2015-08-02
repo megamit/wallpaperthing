@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ModeLabel = new System.Windows.Forms.Label();
-            this.ModeCombo = new System.Windows.Forms.ComboBox();
             this.ModeOptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.OptionsScalingLabel = new System.Windows.Forms.Label();
             this.OptionsScalingCombobox = new System.Windows.Forms.ComboBox();
@@ -45,29 +43,15 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.ModeOptions = new System.Windows.Forms.Button();
             this.ModeInfoLabel = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.sourceType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.SourceListAddButton = new System.Windows.Forms.Button();
+            this.SourceListRemoveButton = new System.Windows.Forms.Button();
             this.ModeOptionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsImageCountEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsCycleDelayEntry)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ModeLabel
-            // 
-            this.ModeLabel.AutoSize = true;
-            this.ModeLabel.Location = new System.Drawing.Point(13, 15);
-            this.ModeLabel.Name = "ModeLabel";
-            this.ModeLabel.Size = new System.Drawing.Size(41, 13);
-            this.ModeLabel.TabIndex = 0;
-            this.ModeLabel.Text = "Source";
-            // 
-            // ModeCombo
-            // 
-            this.ModeCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ModeCombo.FormattingEnabled = true;
-            this.ModeCombo.Location = new System.Drawing.Point(53, 12);
-            this.ModeCombo.Name = "ModeCombo";
-            this.ModeCombo.Size = new System.Drawing.Size(121, 21);
-            this.ModeCombo.TabIndex = 1;
-            this.ModeCombo.SelectedIndexChanged += new System.EventHandler(this.ModeCombo_SelectedIndexChanged);
             // 
             // ModeOptionsGroupBox
             // 
@@ -81,9 +65,9 @@
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleDelayLabel);
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleCombobox);
             this.ModeOptionsGroupBox.Controls.Add(this.OptionsCycleLabel);
-            this.ModeOptionsGroupBox.Location = new System.Drawing.Point(299, 10);
+            this.ModeOptionsGroupBox.Location = new System.Drawing.Point(299, 70);
             this.ModeOptionsGroupBox.Name = "ModeOptionsGroupBox";
-            this.ModeOptionsGroupBox.Size = new System.Drawing.Size(182, 229);
+            this.ModeOptionsGroupBox.Size = new System.Drawing.Size(182, 172);
             this.ModeOptionsGroupBox.TabIndex = 2;
             this.ModeOptionsGroupBox.TabStop = false;
             this.ModeOptionsGroupBox.Text = "Options";
@@ -196,7 +180,7 @@
             // 
             // CancelButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(406, 293);
+            this.CancelButton.Location = new System.Drawing.Point(406, 248);
             this.CancelButton.Name = "CancelButton";
             this.CancelButton.Size = new System.Drawing.Size(75, 23);
             this.CancelButton.TabIndex = 3;
@@ -206,7 +190,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(299, 293);
+            this.OkButton.Location = new System.Drawing.Point(299, 248);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 4;
@@ -217,9 +201,9 @@
             // ModeOptions
             // 
             this.ModeOptions.Enabled = false;
-            this.ModeOptions.Location = new System.Drawing.Point(180, 10);
+            this.ModeOptions.Location = new System.Drawing.Point(299, 41);
             this.ModeOptions.Name = "ModeOptions";
-            this.ModeOptions.Size = new System.Drawing.Size(75, 23);
+            this.ModeOptions.Size = new System.Drawing.Size(93, 23);
             this.ModeOptions.TabIndex = 5;
             this.ModeOptions.Text = "Options";
             this.ModeOptions.UseVisualStyleBackColor = true;
@@ -232,18 +216,65 @@
             this.ModeInfoLabel.Size = new System.Drawing.Size(0, 13);
             this.ModeInfoLabel.TabIndex = 6;
             // 
+            // listView1
+            // 
+            this.listView1.CheckBoxes = true;
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.name,
+            this.sourceType});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.LabelWrap = false;
+            this.listView1.Location = new System.Drawing.Point(16, 12);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(277, 254);
+            this.listView1.TabIndex = 7;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // name
+            // 
+            this.name.Text = "Name";
+            this.name.Width = 189;
+            // 
+            // sourceType
+            // 
+            this.sourceType.Text = "Source Type";
+            this.sourceType.Width = 84;
+            // 
+            // SourceListAddButton
+            // 
+            this.SourceListAddButton.Location = new System.Drawing.Point(299, 12);
+            this.SourceListAddButton.Name = "SourceListAddButton";
+            this.SourceListAddButton.Size = new System.Drawing.Size(93, 23);
+            this.SourceListAddButton.TabIndex = 8;
+            this.SourceListAddButton.Text = "Add";
+            this.SourceListAddButton.UseVisualStyleBackColor = true;
+            this.SourceListAddButton.Click += new System.EventHandler(this.SourceListAddButton_Click);
+            // 
+            // SourceListRemoveButton
+            // 
+            this.SourceListRemoveButton.Location = new System.Drawing.Point(398, 12);
+            this.SourceListRemoveButton.Name = "SourceListRemoveButton";
+            this.SourceListRemoveButton.Size = new System.Drawing.Size(90, 23);
+            this.SourceListRemoveButton.TabIndex = 9;
+            this.SourceListRemoveButton.Text = "Remove";
+            this.SourceListRemoveButton.UseVisualStyleBackColor = true;
+            this.SourceListRemoveButton.Click += new System.EventHandler(this.SourceListRemoveButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 328);
+            this.ClientSize = new System.Drawing.Size(497, 278);
+            this.Controls.Add(this.SourceListRemoveButton);
+            this.Controls.Add(this.SourceListAddButton);
+            this.Controls.Add(this.listView1);
             this.Controls.Add(this.ModeInfoLabel);
             this.Controls.Add(this.ModeOptions);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ModeOptionsGroupBox);
-            this.Controls.Add(this.ModeCombo);
-            this.Controls.Add(this.ModeLabel);
             this.Name = "SettingsForm";
             this.Text = "Settings";
             this.ModeOptionsGroupBox.ResumeLayout(false);
@@ -257,8 +288,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label ModeLabel;
-        private System.Windows.Forms.ComboBox ModeCombo;
         private System.Windows.Forms.GroupBox ModeOptionsGroupBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button OkButton;
@@ -274,5 +303,10 @@
         private System.Windows.Forms.Label OptionsDisplayOrderLabel;
         private System.Windows.Forms.Label OptionsScalingLabel;
         private System.Windows.Forms.ComboBox OptionsScalingCombobox;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader name;
+        private System.Windows.Forms.ColumnHeader sourceType;
+        private System.Windows.Forms.Button SourceListAddButton;
+        private System.Windows.Forms.Button SourceListRemoveButton;
     }
 }

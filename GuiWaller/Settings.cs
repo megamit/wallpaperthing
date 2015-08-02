@@ -12,22 +12,12 @@ namespace GuiWaller
         private GuiWaller.EnumDisplayMonitorsWrapper.DisplayInfoCollection displayList;
         private Theme theme;
         public string apppath { get; private set; }
+        public string themepath { get; set; }
         public Settings()
         {
             apppath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),"Waller");
-
+            themepath = Path.Combine(apppath, "theme.ini");
             settingsPath = Path.Combine(apppath,"settings.ini");
-
-        }
-        public void Save()
-        {
-
-        }
-
-
-        public void FirstLoad()
-        {
-
 
         }
 
@@ -94,6 +84,15 @@ namespace GuiWaller
         }
 
 
+
+        internal List<Source.Source> LoadSources()
+        {
+            string[] sourceFileLines = File.ReadAllLines(themepath);
+            foreach ( string newSource in sourceFileLines){
+                string[] sourceDetails = newSource.Split(',',1);
+                string sourceType[i]
+            }
+        }
     }
 
 }
