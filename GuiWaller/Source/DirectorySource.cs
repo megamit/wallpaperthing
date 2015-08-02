@@ -16,6 +16,13 @@ namespace GuiWaller.Source
         public string getNewWallpaper(){
             return "";
         }
+
+        public string toString()
+        {
+            string classname = base.ToString();
+            string data = String.Join(",", new string[] { classname, path, useSubfolders.ToString(), order });
+            return data;
+        }
         public int runSettingsApplet()
         {
             DirectorySettings settings = new DirectorySettings(new System.EventHandler(onSettingsCloseHandler));

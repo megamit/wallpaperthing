@@ -90,7 +90,8 @@ namespace GuiWaller
             string[] sourceFileLines = File.ReadAllLines(themepath);
             foreach ( string newSource in sourceFileLines){
                 string[] sourceDetails = newSource.Split(',',1);
-                string sourceType[i]
+                string sourceType = sourceDetails[0];
+                string sourceSettings = sourceDetails[1];
             }
         }
     }

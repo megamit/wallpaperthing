@@ -9,5 +9,6 @@ namespace GuiWaller.Source
     {
         string getNewWallpaper();
         int runSettingsApplet();
+        static Source loadFromString();
     }
 }
