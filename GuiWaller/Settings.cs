@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace GuiWaller
 {
-    class Settings
+    public class Settings
     {
         private string settingsPath;
         private GuiWaller.EnumDisplayMonitorsWrapper.DisplayInfoCollection displayList;

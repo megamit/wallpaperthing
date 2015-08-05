@@ -64,6 +64,12 @@
     <Compile Include="Gui\Source\DirectorySettings.Designer.cs">
       <DependentUpon>DirectorySettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\TextDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\TextDialog.Designer.cs">
+      <DependentUpon>TextDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="shlobj.cs" />
     <Compile Include="Source\DirectorySource.cs" />
@@ -78,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\Source\DirectorySettings.resx">
       <DependentUpon>DirectorySettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\TextDialog.resx">
+      <DependentUpon>TextDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

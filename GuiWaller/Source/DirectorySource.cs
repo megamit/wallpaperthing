@@ -39,9 +39,11 @@ namespace GuiWaller.Source
         }
         public int runSettingsApplet()
         {
-            var newSettings = new GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions(path,order,useSubfolders);
-
-            DirectorySettings settings = new DirectorySettings(new System.EventHandler(onSettingsCloseHandler),newSettings);
+            DirectorySettings settings = new DirectorySettings();
+            settings.Path = path;
+            settings.Order = (Settings.CycleMode)order;
+            settings.UseSubfolders = useSubfolders;
+            settings.FormClosing += onSettingsCloseHandler;
             settings.ShowDialog();
             return 0;
         }
@@ -55,10 +57,11 @@ namespace GuiWaller.Source
         }
         public void onSettingsCloseHandler(object sender, EventArgs ev)
         {
-            GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions e = (GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions) ev;
-            path = e.path;
-            useSubfolders = e.useSubfolders;
-            order = e.order;
+            DirectorySettings ds = (DirectorySettings) sender;
+            if (ds.ExitStatus != 0) return;
+            path = ds.Path;
+            useSubfolders = ds.UseSubfolders;
+            order = (int)ds.Order;
         }
         public static IEnumerable<string> ImageInDirectoryGenerator(String path, bool sub)
         {

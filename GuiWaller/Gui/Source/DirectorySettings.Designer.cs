@@ -55,6 +55,7 @@
             this.DirectoryPath.Name = "DirectoryPath";
             this.DirectoryPath.Size = new System.Drawing.Size(139, 20);
             this.DirectoryPath.TabIndex = 1;
+            this.DirectoryPath.TextChanged += new System.EventHandler(this.DirectoryPath_TextChanged);
             // 
             // DirectoryBrowse
             // 
@@ -95,7 +96,6 @@
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Order";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // DirectorySubfolders
             // 
@@ -125,6 +125,7 @@
             this.DirectoryCancel.TabIndex = 5;
             this.DirectoryCancel.Text = "Cancel";
             this.DirectoryCancel.UseVisualStyleBackColor = true;
+            this.DirectoryCancel.Click += new System.EventHandler(this.DirectoryCancel_Click);
             // 
             // DirectorySettings
             // 

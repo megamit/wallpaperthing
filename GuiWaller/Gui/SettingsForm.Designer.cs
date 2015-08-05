@@ -48,6 +48,7 @@
             this.sourceType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SourceListAddButton = new System.Windows.Forms.Button();
             this.SourceListRemoveButton = new System.Windows.Forms.Button();
+            this.SourceListViewRename = new System.Windows.Forms.Button();
             this.ModeOptionsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsImageCountEntry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OptionsCycleDelayEntry)).BeginInit();
@@ -201,9 +202,9 @@
             // ModeOptions
             // 
             this.ModeOptions.Enabled = false;
-            this.ModeOptions.Location = new System.Drawing.Point(299, 41);
+            this.ModeOptions.Location = new System.Drawing.Point(398, 41);
             this.ModeOptions.Name = "ModeOptions";
-            this.ModeOptions.Size = new System.Drawing.Size(93, 23);
+            this.ModeOptions.Size = new System.Drawing.Size(90, 23);
             this.ModeOptions.TabIndex = 5;
             this.ModeOptions.Text = "Options";
             this.ModeOptions.UseVisualStyleBackColor = true;
@@ -264,11 +265,22 @@
             this.SourceListRemoveButton.UseVisualStyleBackColor = true;
             this.SourceListRemoveButton.Click += new System.EventHandler(this.SourceListRemoveButton_Click);
             // 
+            // SourceListViewRename
+            // 
+            this.SourceListViewRename.Location = new System.Drawing.Point(299, 41);
+            this.SourceListViewRename.Name = "SourceListViewRename";
+            this.SourceListViewRename.Size = new System.Drawing.Size(93, 23);
+            this.SourceListViewRename.TabIndex = 10;
+            this.SourceListViewRename.Text = "Rename";
+            this.SourceListViewRename.UseVisualStyleBackColor = true;
+            this.SourceListViewRename.Click += new System.EventHandler(this.SourceListViewRename_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(497, 278);
+            this.Controls.Add(this.SourceListViewRename);
             this.Controls.Add(this.SourceListRemoveButton);
             this.Controls.Add(this.SourceListAddButton);
             this.Controls.Add(this.SourceListView);
@@ -310,5 +322,6 @@
         private System.Windows.Forms.ColumnHeader sourceType;
         private System.Windows.Forms.Button SourceListAddButton;
         private System.Windows.Forms.Button SourceListRemoveButton;
+        private System.Windows.Forms.Button SourceListViewRename;
     }
 }
