@@ -204,7 +204,7 @@ namespace GuiWaller
         {
             try
             {
-                System.Drawing.Image img;
+                Image img;
                 IntPtr result = IntPtr.Zero;
                 SendMessageTimeout(FindWindow("Progman", IntPtr.Zero), 0x52c, IntPtr.Zero, IntPtr.Zero, 0, 500, out result);
 
@@ -228,15 +228,13 @@ namespace GuiWaller
                 {
                     img = CompositeMultiWallpaper(file,displayNumbers);
                 }
-                else img = System.Drawing.Image.FromFile(file[0]);
-
-                img.Save(storagePath, System.Drawing.Imaging.ImageFormat.Bmp);
+                else img = Image.FromFile(file[0]);
+                img.Save(storagePath, ImageFormat.Bmp);
 
                 iad.SetWallpaper(storagePath, 0);
 
                 iad.SetWallpaperOptions(ref wopt, 0);
                 iad.ApplyChanges(AD_Apply.ALL | AD_Apply.FORCE | AD_Apply.BUFFERED_REFRESH);
-
                 //double check for debug (probably unneccessary)
                 WALLPAPEROPT newWopt = new WALLPAPEROPT();
                 iad.GetWallpaperOptions(ref newWopt, 0);

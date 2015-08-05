@@ -13,6 +13,7 @@ namespace GuiWaller.Source
         private bool useSubfolders = false;
         private int order = 0;
         private string name = "Unnamed";
+        IEnumerator<string> filegen;
         public DirectorySource()
         {
 
@@ -24,11 +25,18 @@ namespace GuiWaller.Source
             useSubfolders = Convert.ToBoolean(settings[2]);
             order = Convert.ToInt32(settings[3]);
             name = settings[4];
+            filegen = RandomImageInDirectoryGenerator(path, useSubfolders).GetEnumerator();
             Console.WriteLine("Source Loaded\n\t" + this.ToSaveString());
         }
 
         public string getNewWallpaper(){
-            return "";
+            filegen.MoveNext();
+            if (filegen.Current == null)
+            {
+                filegen = RandomImageInDirectoryGenerator(path, useSubfolders).GetEnumerator();
+                filegen.MoveNext();
+            }
+            return filegen.Current;
         }
 
         public string ToSaveString()
@@ -63,7 +71,7 @@ namespace GuiWaller.Source
             useSubfolders = ds.UseSubfolders;
             order = (int)ds.Order;
         }
-        public static IEnumerable<string> ImageInDirectoryGenerator(String path, bool sub)
+        public IEnumerable<string> ImageInDirectoryGenerator(String path, bool sub)
         {
             int index = 0;
             SearchOption so = sub ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
@@ -93,7 +101,7 @@ namespace GuiWaller.Source
 
             yield return null;
         }
-        public static IEnumerable<string> RandomImageInDirectoryGenerator(String path, bool sub)
+        public IEnumerable<string> RandomImageInDirectoryGenerator(String path, bool sub)
         {
             SearchOption so = sub ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
             if (path == null || path == "") yield return null;
