@@ -207,6 +207,7 @@
             this.ModeOptions.TabIndex = 5;
             this.ModeOptions.Text = "Options";
             this.ModeOptions.UseVisualStyleBackColor = true;
+            this.ModeOptions.Click += new System.EventHandler(this.ModeOptions_Click);
             // 
             // ModeInfoLabel
             // 
@@ -231,6 +232,7 @@
             this.SourceListView.TabIndex = 7;
             this.SourceListView.UseCompatibleStateImageBehavior = false;
             this.SourceListView.View = System.Windows.Forms.View.Details;
+            this.SourceListView.SelectedIndexChanged += new System.EventHandler(this.SourceListView_SelectedIndexChanged);
             // 
             // name
             // 

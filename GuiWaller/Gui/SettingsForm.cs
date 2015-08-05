@@ -36,7 +36,7 @@ namespace GuiWaller.Gui
             OptionsDisplayOrderCombobox.SelectedIndex = OptionsDisplayOrderCombobox.Items.IndexOf((Settings.DisplayCycleMode)Properties.Settings.Default.DisplayOrder);
             OptionsScalingCombobox.SelectedIndex = OptionsScalingCombobox.Items.IndexOf((Desktop.ScaleMode)Properties.Settings.Default.ScaleMode);
             populateSources();
-
+           
 
             
    
@@ -102,6 +102,14 @@ namespace GuiWaller.Gui
 
         }
 
+        private void SourceListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ModeOptions.Enabled = (SourceListView.SelectedIndices.Count > 0);
+        }
 
+        private void ModeOptions_Click(object sender, EventArgs e)
+        {
+            SourceList[SourceListView.SelectedIndices[0]].runSettingsApplet();
+        }
     }
 }
