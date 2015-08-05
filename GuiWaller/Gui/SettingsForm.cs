@@ -12,9 +12,12 @@ namespace GuiWaller.Gui
     public partial class SettingsForm : Form
     {
         private string ModeDirectoryPath;
-        public SettingsForm()
+        private Dictionary<string, string> SourceTypes = GuiWaller.Source.SourceHelper.getSourceTypes();
+        private List<GuiWaller.Source.Source> SourceList;
+        public SettingsForm(List<GuiWaller.Source.Source> sauces)
         {
             InitializeComponent();
+            SourceList = sauces;
             this.MaximumSize = this.Size;
             this.MinimumSize = this.Size;
             OptionsCycleCombobox.DataSource = Enum.GetValues(typeof(Settings.CycleMode));
@@ -32,10 +35,21 @@ namespace GuiWaller.Gui
                 OptionsImageCountEntry.Maximum :(decimal)Properties.Settings.Default.ImagesPerCycle;
             OptionsDisplayOrderCombobox.SelectedIndex = OptionsDisplayOrderCombobox.Items.IndexOf((Settings.DisplayCycleMode)Properties.Settings.Default.DisplayOrder);
             OptionsScalingCombobox.SelectedIndex = OptionsScalingCombobox.Items.IndexOf((Desktop.ScaleMode)Properties.Settings.Default.ScaleMode);
-            
+            populateSources();
+
 
             
    
+        }
+
+        private void populateSources()
+        {
+            SourceListView.Items.Clear();
+            foreach (var source in SourceList)
+            {
+                ListViewItem row = new ListViewItem(new[] { source.getName(), source.getDisplayName() });
+                SourceListView.Items.Add(row);
+            }
         }
 
         private void OkButton_Click(object sender, EventArgs e)
@@ -52,7 +66,13 @@ namespace GuiWaller.Gui
             this.Hide();
             this.Close();
         }
-
+        public EventHandler onOk
+        {
+            set
+            {
+                OkButton.Click+=value;
+            }
+        }
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -62,14 +82,25 @@ namespace GuiWaller.Gui
 
         private void SourceListAddButton_Click(object sender, EventArgs e)
         {
+            ContextMenu menu = new ContextMenu();
+            var typelist = new Menu.MenuItemCollection(menu);
+            foreach (var pair in SourceTypes) //KeyValuePair<string,string>
+            {
 
+                MenuItem item = new MenuItem(pair.Key, delegate {
+                    var source = GuiWaller.Source.SourceHelper.getSourceFromString(pair.Value);
+                    SourceList.Add(source);
+                    populateSources();
+                });
+               typelist.Add(item);
+            }
+            menu.Show(SourceListAddButton, SourceListAddButton.PointToClient(SourceListAddButton.Location));
         }
 
         private void SourceListRemoveButton_Click(object sender, EventArgs e)
         {
 
         }
-
 
 
     }

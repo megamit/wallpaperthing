@@ -9,25 +9,49 @@ namespace GuiWaller.Source
 {
     class DirectorySource : Source
     {
-        private string path;
-        private bool useSubfolders;
-        private string order;
+        private string path = "";
+        private bool useSubfolders = false;
+        private int order = 0;
+        private string name = "Unnamed";
+        public DirectorySource()
+        {
+
+        }
+        public void LoadFromString(string[] loadString)
+        {
+            string[] settings = loadString;
+            path = settings[1];
+            useSubfolders = Convert.ToBoolean(settings[2]);
+            order = Convert.ToInt32(settings[3]);
+            name = settings[4];
+            Console.WriteLine("Source Loaded\n\t" + this.ToSaveString());
+        }
 
         public string getNewWallpaper(){
             return "";
         }
 
-        public string toString()
+        public string ToSaveString()
         {
             string classname = base.ToString();
-            string data = String.Join(",", new string[] { classname, path, useSubfolders.ToString(), order });
+            string data = String.Join(",", new string[] { classname, path, useSubfolders.ToString(), order.ToString(), name });
             return data;
         }
         public int runSettingsApplet()
         {
-            DirectorySettings settings = new DirectorySettings(new System.EventHandler(onSettingsCloseHandler));
+            var newSettings = new GuiWaller.Gui.Source.DirectorySettings.DirectorySettingsClosedOptions(path,order,useSubfolders);
+
+            DirectorySettings settings = new DirectorySettings(new System.EventHandler(onSettingsCloseHandler),newSettings);
             settings.ShowDialog();
             return 0;
+        }
+        public string getName()
+        {
+            return name;
+        }
+        public string getDisplayName()
+        {
+            return "Folder";
         }
         public void onSettingsCloseHandler(object sender, EventArgs ev)
         {

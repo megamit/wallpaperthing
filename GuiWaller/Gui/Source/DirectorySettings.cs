@@ -13,11 +13,11 @@ namespace GuiWaller.Gui.Source
     {
         public class DirectorySettingsClosedOptions : EventArgs
         {
-            public readonly string path;
-            public readonly string order;
-            public readonly bool useSubfolders;
+            public string path;
+            public int order;
+            public bool useSubfolders;
 
-            public DirectorySettingsClosedOptions(string newPath, string newOrder, bool newUseSubfolders)
+            public DirectorySettingsClosedOptions(string newPath, int newOrder, bool newUseSubfolders)
             {
                 path = newPath;
                 order = newOrder;
@@ -27,16 +27,15 @@ namespace GuiWaller.Gui.Source
         }
 
         private EventHandler onOkHandler;
-        public DirectorySettings(EventHandler onOkHandle)
+        public DirectorySettings(EventHandler onOkHandle,DirectorySettingsClosedOptions options)
         {
             InitializeComponent();
             onOkHandler = onOkHandle;
+            DirectoryOrder.DataSource = Enum.GetValues(typeof(Settings.CycleMode));
+
+            DirectoryOrder.SelectedIndex = DirectoryOrder.Items.IndexOf((Settings.CycleMode)options.order);
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -47,9 +46,16 @@ namespace GuiWaller.Gui.Source
         {
             EventArgs args = new DirectorySettingsClosedOptions(
                 DirectoryPath.Text,
-                ""+DirectoryOrder.SelectedValue,
+                DirectoryOrder.SelectedIndex,
                 DirectorySubfolders.Checked);
             onOkHandler(sender, args);
+        }
+
+        private void DirectoryBrowse_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog diag = new FolderBrowserDialog();
+            diag.ShowDialog();
+            DirectoryPath.Text = diag.SelectedPath;
         }
     }
 }

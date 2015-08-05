@@ -39,11 +39,11 @@
             this.OptionsCycleDelayLabel = new System.Windows.Forms.Label();
             this.OptionsCycleCombobox = new System.Windows.Forms.ComboBox();
             this.OptionsCycleLabel = new System.Windows.Forms.Label();
-            this.CancelButton = new System.Windows.Forms.Button();
+            this.CnclButton = new System.Windows.Forms.Button();
             this.OkButton = new System.Windows.Forms.Button();
             this.ModeOptions = new System.Windows.Forms.Button();
             this.ModeInfoLabel = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.SourceListView = new System.Windows.Forms.ListView();
             this.name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.sourceType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SourceListAddButton = new System.Windows.Forms.Button();
@@ -178,15 +178,15 @@
             this.OptionsCycleLabel.TabIndex = 0;
             this.OptionsCycleLabel.Text = "Cycle Mode";
             // 
-            // CancelButton
+            // CnclButton
             // 
-            this.CancelButton.Location = new System.Drawing.Point(406, 248);
-            this.CancelButton.Name = "CancelButton";
-            this.CancelButton.Size = new System.Drawing.Size(75, 23);
-            this.CancelButton.TabIndex = 3;
-            this.CancelButton.Text = "Cancel";
-            this.CancelButton.UseVisualStyleBackColor = true;
-            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.CnclButton.Location = new System.Drawing.Point(406, 248);
+            this.CnclButton.Name = "CnclButton";
+            this.CnclButton.Size = new System.Drawing.Size(75, 23);
+            this.CnclButton.TabIndex = 3;
+            this.CnclButton.Text = "Cancel";
+            this.CnclButton.UseVisualStyleBackColor = true;
+            this.CnclButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // OkButton
             // 
@@ -216,21 +216,21 @@
             this.ModeInfoLabel.Size = new System.Drawing.Size(0, 13);
             this.ModeInfoLabel.TabIndex = 6;
             // 
-            // listView1
+            // SourceListView
             // 
-            this.listView1.CheckBoxes = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.SourceListView.CheckBoxes = true;
+            this.SourceListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.name,
             this.sourceType});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.LabelWrap = false;
-            this.listView1.Location = new System.Drawing.Point(16, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(277, 254);
-            this.listView1.TabIndex = 7;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.SourceListView.FullRowSelect = true;
+            this.SourceListView.GridLines = true;
+            this.SourceListView.LabelWrap = false;
+            this.SourceListView.Location = new System.Drawing.Point(16, 12);
+            this.SourceListView.Name = "SourceListView";
+            this.SourceListView.Size = new System.Drawing.Size(277, 254);
+            this.SourceListView.TabIndex = 7;
+            this.SourceListView.UseCompatibleStateImageBehavior = false;
+            this.SourceListView.View = System.Windows.Forms.View.Details;
             // 
             // name
             // 
@@ -269,11 +269,11 @@
             this.ClientSize = new System.Drawing.Size(497, 278);
             this.Controls.Add(this.SourceListRemoveButton);
             this.Controls.Add(this.SourceListAddButton);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.SourceListView);
             this.Controls.Add(this.ModeInfoLabel);
             this.Controls.Add(this.ModeOptions);
             this.Controls.Add(this.OkButton);
-            this.Controls.Add(this.CancelButton);
+            this.Controls.Add(this.CnclButton);
             this.Controls.Add(this.ModeOptionsGroupBox);
             this.Name = "SettingsForm";
             this.Text = "Settings";
@@ -289,7 +289,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox ModeOptionsGroupBox;
-        private System.Windows.Forms.Button CancelButton;
+        private System.Windows.Forms.Button CnclButton;
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Button ModeOptions;
         private System.Windows.Forms.Label OptionsCycleLabel;
@@ -303,7 +303,7 @@
         private System.Windows.Forms.Label OptionsDisplayOrderLabel;
         private System.Windows.Forms.Label OptionsScalingLabel;
         private System.Windows.Forms.ComboBox OptionsScalingCombobox;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView SourceListView;
         private System.Windows.Forms.ColumnHeader name;
         private System.Windows.Forms.ColumnHeader sourceType;
         private System.Windows.Forms.Button SourceListAddButton;

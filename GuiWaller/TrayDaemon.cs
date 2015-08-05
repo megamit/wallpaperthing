@@ -12,7 +12,6 @@ namespace GuiWaller
     {
         private NotifyIcon trayIcon;
         private Settings settings;
-        private List<Source.Source> sourceList;
         private Timer ticker;
         private Theme theme;
         public TrayDaemon ()
@@ -28,10 +27,8 @@ namespace GuiWaller
             trayIcon.Visible = true;
             ticker = new Timer();
             settings = new Settings();
-            sourceList = settings.LoadSources();
             settings.updateDesktopList();
-            //theme = settings.BuildTheme();
-
+            theme = settings.BuildTheme();
             ticker.Interval = Settings.getMillisecondDelay();
             ticker.Tick += tick;
             ticker.Start();
@@ -47,15 +44,15 @@ namespace GuiWaller
         }
         void OpenSettingForm(object sender, EventArgs e)
         {
-            SettingsForm setForm = new SettingsForm();
-            setForm.FormClosed += onSettingFormClose;
+            SettingsForm setForm = new SettingsForm(theme.sourceList);
+            setForm.onOk = onSettingFormClose;
             setForm.Show();
         }
 
         void onSettingFormClose(object sender, EventArgs e)
         {
             ticker.Interval = Settings.getMillisecondDelay();
-            theme = settings.BuildTheme();
+            settings.SaveSources();
         }
         
         void SetRandomWallpapers(object sender, EventArgs e)

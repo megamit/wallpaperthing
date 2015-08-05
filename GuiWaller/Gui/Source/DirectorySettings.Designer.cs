@@ -64,7 +64,7 @@
             this.DirectoryBrowse.TabIndex = 2;
             this.DirectoryBrowse.Text = "Browse";
             this.DirectoryBrowse.UseVisualStyleBackColor = true;
-            this.DirectoryBrowse.Click += new System.EventHandler(this.button1_Click);
+            this.DirectoryBrowse.Click += new System.EventHandler(this.DirectoryBrowse_Click);
             // 
             // groupBox1
             // 

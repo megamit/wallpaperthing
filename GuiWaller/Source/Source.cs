@@ -5,10 +5,13 @@ using System.Text;
 
 namespace GuiWaller.Source
 {
-    interface Source 
+    public interface Source 
     {
+        string getName();
+        string ToSaveString();
+        string getDisplayName();
         string getNewWallpaper();
         int runSettingsApplet();
-        static Source loadFromString();
+        void LoadFromString(string[] data);
     }
 }
